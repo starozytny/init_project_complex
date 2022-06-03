@@ -4,7 +4,7 @@
 namespace App\Service;
 
 
-use App\Entity\Settings;
+use App\Entity\Main\Settings;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 

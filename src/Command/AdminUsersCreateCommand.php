@@ -2,8 +2,8 @@
 
 namespace App\Command;
 
-use App\Entity\Notification;
-use App\Entity\User;
+use App\Entity\Main\Notification;
+use App\Entity\Main\User;
 use App\Service\DatabaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;

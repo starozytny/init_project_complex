@@ -2,7 +2,7 @@ security:
     enable_authenticator_manager: true
 
     password_hashers:
-        App\Entity\User:
+        App\Entity\Main\User:
             algorithm: auto
 
 #    encoders:
@@ -14,7 +14,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Main\User
                 property: username
     firewalls:
         dev:

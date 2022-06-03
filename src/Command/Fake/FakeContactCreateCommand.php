@@ -2,8 +2,8 @@
 
 namespace App\Command\Fake;
 
-use App\Entity\Contact;
-use App\Entity\Notification;
+use App\Entity\Main\Contact;
+use App\Entity\Main\Notification;
 use App\Service\DatabaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;

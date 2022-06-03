@@ -4,7 +4,7 @@
 namespace App\Service;
 
 
-use App\Entity\Notification;
+use App\Entity\Main\Notification;
 use Doctrine\ORM\EntityManagerInterface;
 
 class NotificationService
@@ -28,5 +28,5 @@ class NotificationService
         $this->em->persist($obj);
         $this->em->flush();
     }
-   
+
 }

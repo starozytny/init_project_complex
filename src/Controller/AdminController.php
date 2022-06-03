@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Changelog;
-use App\Entity\Contact;
-use App\Entity\Notification;
-use App\Entity\Settings;
-use App\Entity\User;
+use App\Entity\Main\Changelog;
+use App\Entity\Main\Contact;
+use App\Entity\Main\Notification;
+use App\Entity\Main\Settings;
+use App\Entity\Main\User;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,7 +26,7 @@ class AdminController extends AbstractController
     {
         $this->doctrine = $doctrine;
     }
-    
+
     private function getAllData($classe, SerializerInterface $serializer, $groups = User::ADMIN_READ): string
     {
         $em = $this->doctrine->getManager();

@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Entity\Main\User;
+use App\Repository\Main\UserRepository;
 use App\Service\ApiResponse;
 use App\Service\Data\DataUser;
 use App\Service\Export;
@@ -14,6 +14,7 @@ use App\Service\SettingsService;
 use App\Service\ValidatorService;
 use DateTime;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use OpenApi\Annotations as OA;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -21,7 +22,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**

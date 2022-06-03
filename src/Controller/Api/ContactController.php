@@ -2,9 +2,9 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Contact;
-use App\Entity\User;
-use App\Repository\ContactRepository;
+use App\Entity\Main\Contact;
+use App\Entity\Main\User;
+use App\Repository\Main\ContactRepository;
 use App\Service\ApiResponse;
 use App\Service\Data\DataService;
 use App\Service\MailerService;
@@ -13,12 +13,12 @@ use App\Service\SanitizeData;
 use App\Service\SettingsService;
 use App\Service\ValidatorService;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use OpenApi\Annotations as OA;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 
 /**
  * @Route("/api/contact", name="api_contact_")

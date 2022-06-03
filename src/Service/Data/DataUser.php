@@ -4,7 +4,7 @@
 namespace App\Service\Data;
 
 
-use App\Entity\User;
+use App\Entity\Main\User;
 use App\Service\SanitizeData;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 

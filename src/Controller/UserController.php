@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Changelog;
-use App\Entity\User;
+use App\Entity\Main\Changelog;
+use App\Entity\Main\User;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

@@ -2,9 +2,9 @@
 
 namespace App\Command\Fake;
 
-use App\Entity\Changelog;
-use App\Entity\Contact;
-use App\Entity\Notification;
+use App\Entity\Main\Changelog;
+use App\Entity\Main\Contact;
+use App\Entity\Main\Notification;
 use App\Service\Data\DataChangelog;
 use App\Service\DatabaseService;
 use Doctrine\ORM\EntityManagerInterface;

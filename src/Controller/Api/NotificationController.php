@@ -2,17 +2,17 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Notification;
-use App\Entity\User;
-use App\Repository\NotificationRepository;
+use App\Entity\Main\Notification;
+use App\Entity\Main\User;
+use App\Repository\Main\NotificationRepository;
 use App\Service\ApiResponse;
 use App\Service\Data\DataService;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 
 /**
  * @Route("/api/notifications", name="api_notifications_")

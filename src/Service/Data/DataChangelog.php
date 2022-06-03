@@ -2,7 +2,7 @@
 
 namespace App\Service\Data;
 
-use App\Entity\Changelog;
+use App\Entity\Main\Changelog;
 
 class DataChangelog extends DataConstructor
 {

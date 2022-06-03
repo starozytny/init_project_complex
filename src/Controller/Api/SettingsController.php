@@ -2,19 +2,19 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Settings;
-use App\Entity\User;
-use App\Repository\SettingsRepository;
+use App\Entity\Main\Settings;
+use App\Entity\Main\User;
+use App\Repository\Main\SettingsRepository;
 use App\Service\ApiResponse;
 use App\Service\FileUploader;
 use App\Service\ValidatorService;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use OpenApi\Annotations as OA;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -29,7 +29,7 @@ class SettingsController extends AbstractController
     {
         $this->doctrine = $doctrine;
     }
-    
+
     /**
      * Get settings data
      *

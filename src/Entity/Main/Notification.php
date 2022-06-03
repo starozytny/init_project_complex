@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Main;
 
-use App\Repository\ContactRepository;
+use App\Entity\DataEntity;
+use App\Repository\Main\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @ORM\Entity(repositoryClass=NotificationRepository::class)
  */
-class Contact extends DataEntity
+class Notification extends DataEntity
 {
     /**
      * @ORM\Id
@@ -31,19 +32,12 @@ class Contact extends DataEntity
      * @ORM\Column(type="string", length=255)
      * @Groups({"admin:read"})
      * @Assert\NotBlank()
-     * @Assert\Email()
      */
-    private $email;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Groups({"admin:read"})
-     * @Assert\NotBlank()
-     */
-    private $message;
+    private $icon;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"admin:read"})
      * @Assert\NotBlank()
      */
     private $createdAt;
@@ -52,11 +46,23 @@ class Contact extends DataEntity
      * @ORM\Column(type="boolean")
      * @Groups({"admin:read"})
      */
-    private $isSeen = false;
+    private $isSeen;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="notifications")
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"admin:read"})
+     */
+    private $url;
 
     public function __construct()
     {
         $this->createdAt = $this->initNewDate();
+        $this->isSeen = false;
     }
 
     public function getId(): ?int
@@ -76,36 +82,24 @@ class Contact extends DataEntity
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getIcon(): ?string
     {
-        return $this->email;
+        return $this->icon;
     }
 
-    public function setEmail(string $email): self
+    public function setIcon(string $icon): self
     {
-        $this->email = $email;
+        $this->icon = $icon;
 
         return $this;
     }
 
-    public function getMessage(): ?string
-    {
-        return $this->message;
-    }
-
-    public function setMessage(string $message): self
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -113,14 +107,13 @@ class Contact extends DataEntity
     }
 
     /**
-     * How long ago a user was added.
+     * How long ago a user was logged for the last time.
      *
-     * @return string
      * @Groups({"admin:read"})
      */
-    public function getCreatedAtAgo(): string
+    public function getCreatedAtAgo(): ?string
     {
-        return $this->getHowLongAgo($this->createdAt);
+        return $this->getHowLongAgo($this->createdAt, 2);
     }
 
     public function getIsSeen(): ?bool
@@ -131,6 +124,30 @@ class Contact extends DataEntity
     public function setIsSeen(bool $isSeen): self
     {
         $this->isSeen = $isSeen;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }

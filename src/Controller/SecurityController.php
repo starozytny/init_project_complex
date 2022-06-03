@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Main\User;
 use App\Service\Expiration;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
     {
         $this->doctrine = $doctrine;
     }
-    
+
     /**
      * @Route("/login", options={"expose"=true}, name="app_login")
      * @param AuthenticationUtils $authenticationUtils

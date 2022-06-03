@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Changelog;
-use App\Entity\User;
+use App\Entity\Main\Changelog;
+use App\Entity\Main\User;
 use App\Service\ApiResponse;
 use App\Service\Data\DataChangelog;
 use App\Service\Data\DataService;
