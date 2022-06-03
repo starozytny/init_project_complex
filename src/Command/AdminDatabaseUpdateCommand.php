@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Entity\Society;
+use App\Entity\Main\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -27,33 +27,27 @@ class AdminDatabaseUpdateCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-//        $societies = $this->em->getRepository(Society::class)->findAll();
-//        foreach($societies as $society){
-//            $command = $this->getApplication()->find('do:sc:up');
-//            $arguments = [
-//                'command' => 'do:sc:up',
-//                '--force' => true,
-//                '--em' => $society->getManager()
-//            ];
-//            $greetInput = new ArrayInput($arguments);
-//            try {
-//                $command->run($greetInput, $output);
-//            } catch (\Exception $e) {
-//                $io->error('Erreur run do:sc:up : ' . $e);
-//            }
-//        }
+        $noDuplication = [];
+        $objs = $this->em->getRepository(User::class)->findAll();
 
-        $command = $this->getApplication()->find('do:sc:up');
-        $arguments = [
-            'command' => 'do:sc:up',
-            '--force' => true,
-            '--em' => "client1"
-        ];
-        $greetInput = new ArrayInput($arguments);
-        try {
-            $command->run($greetInput, $output);
-        } catch (\Exception $e) {
-            $io->error('Erreur run do:sc:up : ' . $e);
+        /** @var User $obj */
+        foreach($objs as $obj){
+            if(!in_array($obj->getManager(), $noDuplication)){
+                $noDuplication[] = $obj->getManager();
+
+                $command = $this->getApplication()->find('do:sc:up');
+                $arguments = [
+                    'command' => 'do:sc:up',
+                    '--force' => true,
+                    '--em' => $obj->getManager()
+                ];
+                $greetInput = new ArrayInput($arguments);
+                try {
+                    $command->run($greetInput, $output);
+                } catch (\Exception $e) {
+                    $io->error('Erreur run do:sc:up : ' . $e);
+                }
+            }
         }
 
         $io->newLine();

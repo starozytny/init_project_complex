@@ -22,6 +22,8 @@ class AdminUsersCreateCommand extends Command
     private $databaseService;
     private $dataUser;
 
+    const NAME_MANAGER = "client1";
+
     public function __construct(EntityManagerInterface $entityManager, DatabaseService $databaseService, DataUser $dataUser)
     {
         parent::__construct();
@@ -79,7 +81,7 @@ class AdminUsersCreateCommand extends Command
                 "roles" => $user['roles'],
                 "firstname" => $user['firstname'],
                 "lastname" => $user['lastname'],
-                "manager" => "default",
+                "manager" => "client1",
             ];
 
             $data = json_decode(json_encode($data));
@@ -100,7 +102,7 @@ class AdminUsersCreateCommand extends Command
                     "roles" => ['ROLE_USER'],
                     "firstname" => $fake->firstName,
                     "lastname" => $fake->lastName,
-                    "manager" => "default",
+                    "manager" => "client1",
                 ];
 
                 $data = json_decode(json_encode($data));
