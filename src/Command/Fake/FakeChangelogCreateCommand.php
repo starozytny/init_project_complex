@@ -3,9 +3,7 @@
 namespace App\Command\Fake;
 
 use App\Entity\Main\Changelog;
-use App\Entity\Main\Contact;
-use App\Entity\Main\Notification;
-use App\Service\Data\DataChangelog;
+use App\Service\Data\Main\DataChangelog;
 use App\Service\DatabaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;

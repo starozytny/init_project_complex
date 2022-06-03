@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Service\Data;
+namespace App\Service\Data\Main;
 
 
 use App\Entity\Main\User;
 use App\Service\SanitizeData;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class DataUser
 {
@@ -26,10 +25,11 @@ class DataUser
         $username = isset($data->username) ? $this->sanitizeData->fullSanitize($data->username) : $data->email;
 
         return ($obj)
-            ->setUsername($username)
-            ->setFirstname(ucfirst($this->sanitizeData->sanitizeString($data->firstname)))
-            ->setLastname(mb_strtoupper($this->sanitizeData->sanitizeString($data->lastname)))
-            ->setEmail($data->email)
+            ->setUsername($this->sanitizeData->trimData($username))
+            ->setFirstname(ucfirst($this->sanitizeData->trimData($data->firstname)))
+            ->setLastname(mb_strtoupper($this->sanitizeData->trimData($data->lastname)))
+            ->setEmail($this->sanitizeData->trimData($data->email))
+            ->setManager($this->sanitizeData->trimData($data->manager))
         ;
     }
 }

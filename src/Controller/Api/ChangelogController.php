@@ -5,16 +5,16 @@ namespace App\Controller\Api;
 use App\Entity\Main\Changelog;
 use App\Entity\Main\User;
 use App\Service\ApiResponse;
-use App\Service\Data\DataChangelog;
-use App\Service\Data\DataService;
+use App\Service\Data\Main\DataChangelog;
+use App\Service\Data\Main\DataService;
 use App\Service\ValidatorService;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use OpenApi\Annotations as OA;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Annotations as OA;
 
 /**
  * @Route("/api/changelogs", name="api_changelogs_")

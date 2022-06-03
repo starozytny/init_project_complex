@@ -4,28 +4,29 @@
 namespace App\Service;
 
 
-use Doctrine\DBAL\DBALException;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 class DatabaseService
 {
-    private $em;
+    private $registry;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->em = $entityManager;
+        $this->registry = $registry;
     }
 
-    public function resetTable(SymfonyStyle $io, $list)
+    public function resetTable(SymfonyStyle $io, $manager, $list)
     {
+        $em = $this->registry->getManager($manager);
+
         foreach ($list as $item) {
-            $objs = $this->em->getRepository($item)->findAll();
+            $objs = $em->getRepository($item)->findAll();
             foreach($objs as $obj){
-                $this->em->remove($obj);
+                $em->remove($obj);
             }
 
-            $this->em->flush();
+            $em->flush();
         }
         $io->text('Reset [OK]');
     }

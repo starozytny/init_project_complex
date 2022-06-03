@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Service\Data;
+namespace App\Service\Data\Main;
 
 use App\Entity\Main\Changelog;
+use App\Service\Data\DataConstructor;
 
 class DataChangelog extends DataConstructor
 {

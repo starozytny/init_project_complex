@@ -120,6 +120,11 @@ class User extends DataEntity implements UserInterface, PasswordAuthenticatedUse
     private $notifications;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $manager;
+
+    /**
      * @throws Exception
      */
     public function __construct()
@@ -446,5 +451,17 @@ class User extends DataEntity implements UserInterface, PasswordAuthenticatedUse
     public function getAvatarFile(): string
     {
         return $this->getFileOrDefault($this->avatar, self::FOLDER_AVATARS, "https://robohash.org/" . $this->username);
+    }
+
+    public function getManager(): ?string
+    {
+        return $this->manager;
+    }
+
+    public function setManager(string $manager): self
+    {
+        $this->manager = $manager;
+
+        return $this;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\Main\Notification;
 use App\Entity\Main\User;
+use App\Service\Data\Main\DataUser;
 use App\Service\DatabaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
@@ -16,21 +17,23 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class AdminUsersCreateCommand extends Command
 {
     protected static $defaultName = 'admin:users:create';
+    protected static $defaultDescription = 'Create an user and an admin.';
     private $em;
     private $databaseService;
+    private $dataUser;
 
-    public function __construct(EntityManagerInterface $entityManager, DatabaseService $databaseService)
+    public function __construct(EntityManagerInterface $entityManager, DatabaseService $databaseService, DataUser $dataUser)
     {
         parent::__construct();
 
         $this->em = $entityManager;
         $this->databaseService = $databaseService;
+        $this->dataUser = $dataUser;
     }
 
     protected function configure()
     {
         $this
-            ->setDescription('Create an user and an admin.')
             ->addOption('fake', "f", InputOption::VALUE_NONE, 'Option shit values')
         ;
     }
@@ -40,9 +43,9 @@ class AdminUsersCreateCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $io->title('Reset des tables');
-        $this->databaseService->resetTable($io, [Notification::class, User::class]);
+        $this->databaseService->resetTable($io, "default", [Notification::class, User::class]);
 
-        $users = array(
+        $users = [
             [
                 'username' => 'shanbo',
                 'firstname' => 'Dev',
@@ -64,22 +67,26 @@ class AdminUsersCreateCommand extends Command
                 'email' => 'shanks@hotmail.fr',
                 'roles' => ['ROLE_USER']
             ]
-        );
+        ];
 
         $password = password_hash("azerty", PASSWORD_ARGON2I);
 
         $io->title('Création des utilisateurs');
         foreach ($users as $user) {
-            $new = (new User())
-                ->setUsername($user['username'])
-                ->setEmail($user['email'])
-                ->setRoles($user['roles'])
-                ->setFirstname(ucfirst($user['firstname']))
-                ->setLastname(mb_strtoupper($user['lastname']))
-                ->setPassword($password)
-            ;
+            $data = [
+                "username" => $user['username'],
+                "email" => $user['email'],
+                "roles" => $user['roles'],
+                "firstname" => $user['firstname'],
+                "lastname" => $user['lastname'],
+                "manager" => "default",
+            ];
 
-            $this->em->persist($new);
+            $data = json_decode(json_encode($data));
+            $obj = $this->dataUser->setData(new User(), $data);
+            $obj->setPassword($password);
+
+            $this->em->persist($obj);
             $io->text('USER : ' . $user['username'] . ' créé' );
         }
 
@@ -87,17 +94,20 @@ class AdminUsersCreateCommand extends Command
             $io->title('Création de 110 utilisateurs lambdas');
             $fake = Factory::create();
             for($i=0; $i<110 ; $i++) {
-                $new = (new User())
-                    ->setUsername($fake->userName)
-                    ->setEmail($fake->freeEmail)
-//                    ->setEmail("undefined@undefined.fr")
-                    ->setRoles(['ROLE_USER'])
-                    ->setFirstname(ucfirst($fake->firstName))
-                    ->setLastname(mb_strtoupper($fake->lastName))
-                    ->setPassword($password)
-                ;
+                $data = [
+                    "username" => $fake->userName,
+                    "email" => $fake->freeEmail,
+                    "roles" => ['ROLE_USER'],
+                    "firstname" => $fake->firstName,
+                    "lastname" => $fake->lastName,
+                    "manager" => "default",
+                ];
 
-                $this->em->persist($new);
+                $data = json_decode(json_encode($data));
+                $obj = $this->dataUser->setData(new User(), $data);
+                $obj->setPassword($password);
+
+                $this->em->persist($obj);
             }
             $io->text('USER : Utilisateurs fake créés' );
         }

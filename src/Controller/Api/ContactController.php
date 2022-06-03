@@ -6,7 +6,7 @@ use App\Entity\Main\Contact;
 use App\Entity\Main\User;
 use App\Repository\Main\ContactRepository;
 use App\Service\ApiResponse;
-use App\Service\Data\DataService;
+use App\Service\Data\Main\DataService;
 use App\Service\MailerService;
 use App\Service\NotificationService;
 use App\Service\SanitizeData;

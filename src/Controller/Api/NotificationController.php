@@ -6,7 +6,7 @@ use App\Entity\Main\Notification;
 use App\Entity\Main\User;
 use App\Repository\Main\NotificationRepository;
 use App\Service\ApiResponse;
-use App\Service\Data\DataService;
+use App\Service\Data\Main\DataService;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use OpenApi\Annotations as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

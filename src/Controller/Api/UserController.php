@@ -5,7 +5,7 @@ namespace App\Controller\Api;
 use App\Entity\Main\User;
 use App\Repository\Main\UserRepository;
 use App\Service\ApiResponse;
-use App\Service\Data\DataUser;
+use App\Service\Data\Main\DataUser;
 use App\Service\Export;
 use App\Service\FileUploader;
 use App\Service\MailerService;
