@@ -19,13 +19,16 @@ class FakeStripeProductCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $stripe = new \Stripe\StripeClient('sk_test_51Kb5F2HZRd7sklEaGiVozh4jIRk65gWOCFqZqNFJCDUTkDmlZItmyvHEcm7rvdCnca7xuVNZMrIdfqNIRzEq1CiB00pLy13SpI');
 
-        $stripe->prices->create(
+        $est = $stripe->prices->create(
             [
                 'currency' => 'usd',
                 'unit_amount' => 120000,
                 'product_data' => ['name' => 'stand up paddleboard'],
             ]
         );
+
+        $io->text($est);
+
         $io->text('PRODUIT : Produit créé, vérifier sur le dashboard de stripe.' );
 
         $io->newLine();
