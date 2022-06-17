@@ -1,5 +1,6 @@
 module.exports = {
     plugins: {
-        autoprefixer: ({grid: "true"})
+        tailwindcss: {},
+        autoprefixer: {},
     }
 }

@@ -9,48 +9,73 @@
 {% block body %}
     {% include "dashboard/layout/components/loader.html.twig" %}
 
-    <div class="body">
-        <nav>
-            <div class="nav-header">
-                <div class="nav-header-logo">
-                    <img src="{{ asset('build/dashboard/images/logilink-logo.svg') }}" alt="Logo du site">
-                </div>
-            </div>
-            <div id="menu" data-menu="{{ menu | json_encode }}" data-menu-bottom="{{ menuBottom | json_encode }}"></div>
-        </nav>
-
-        <main>
-
-            <header>
-                <div class="header-container">
-                    <div id="notifications"></div>
-                    <div id="theme"></div>
-                    <div class="header-name">
-                        <div class="profil">
-                            <span>{{ app.user.lastname | upper }} {{ app.user.firstname | capitalize }}</span>
-                            <a class="logout" href="{{ path('app_logout') }}">
-                                <span>Se déconnecter</span>
-                            </a>
-                        </div>
-                        {% if app.user.avatar %}
-                            <img src="{{ asset('avatars/' ~ app.user.avatar) }}" alt="Avatar de {{ app.user.userIdentifier }}">
-                        {% else %}
-                            <img src="https://robohash.org/{{ app.user.userIdentifier }}" alt="Avatar de {{ app.user.userIdentifier }}"/>
-                        {% endif %}
-                    </div>
-                </div>
-            </header>
-
-            {% include "dashboard/layout/components/page_title.html.twig" %}
-            {% include "dashboard/layout/components/submenu.html.twig" %}
-
+    <div class="md:grid grid-rows-3 grid-flow-col gap-0">
+        <div class="row-span-3 bg-indigo-100 fixed w-1/6">01</div>
+        <div class="row-span-3 bg-indigo-200">01</div>
+        <div class="col-span-6 bg-indigo-500">02</div>
+        <div class="row-span-2 col-span-6 bg-indigo-700">
             <div>
-                {% block main_content %}{% endblock %}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur consequuntur corporis eos est,
+                libero nemo, nihil odio quo recusandae, rem repudiandae voluptatibus. Accusamus ad error harum maxime, repellat similique?
             </div>
-
-            {% block footer %}{% endblock %}
-        </main>
+        </div>
     </div>
+
+
+{#    <div class="body">#}
+{#        <nav>#}
+{#            <div class="nav-header">#}
+{#                <div class="nav-header-logo">#}
+{#                    <img src="{{ asset('build/dashboard/images/logilink-logo.svg') }}" alt="Logo du site">#}
+{#                </div>#}
+{#            </div>#}
+{#            <div id="menu" data-menu="{{ menu | json_encode }}" data-menu-bottom="{{ menuBottom | json_encode }}"></div>#}
+{#        </nav>#}
+
+{#        <main>#}
+
+{#            <header>#}
+{#                <div class="header-container">#}
+{#                    <div id="notifications"></div>#}
+{#                    <div id="theme"></div>#}
+{#                    <div class="header-name">#}
+{#                        <div class="profil">#}
+{#                            <span>{{ app.user.lastname | upper }} {{ app.user.firstname | capitalize }}</span>#}
+{#                            <a class="logout" href="{{ path('app_logout') }}">#}
+{#                                <span>Se déconnecter</span>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                        {% if app.user.avatar %}#}
+{#                            <img src="{{ asset('avatars/' ~ app.user.avatar) }}" alt="Avatar de {{ app.user.userIdentifier }}">#}
+{#                        {% else %}#}
+{#                            <img src="https://robohash.org/{{ app.user.userIdentifier }}" alt="Avatar de {{ app.user.userIdentifier }}"/>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </header>#}
+
+{#            {% include "dashboard/layout/components/page_title.html.twig" %}#}
+{#            {% include "dashboard/layout/components/submenu.html.twig" %}#}
+
+{#            <div>#}
+{#                {% block main_content %}{% endblock %}#}
+{#            </div>#}
+
+{#            {% block footer %}{% endblock %}#}
+{#        </main>#}
+{#    </div>#}
 {% endblock %}
 
 {% block javascripts %}
